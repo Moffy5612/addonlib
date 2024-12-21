@@ -8,6 +8,7 @@ import com.moffy5612.addonlib.AddonLib;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -49,6 +50,11 @@ public abstract class ContentHandlerBase {
     }
 
     public void processIMC(final InterModProcessEvent event)
+    {
+        
+    }
+
+    public void clientSetup(final FMLClientSetupEvent event)
     {
         
     }

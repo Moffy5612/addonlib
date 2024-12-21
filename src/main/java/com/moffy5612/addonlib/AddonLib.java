@@ -8,6 +8,7 @@ import com.mojang.logging.LogUtils;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -23,6 +24,7 @@ public class AddonLib {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
     
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -45,6 +47,12 @@ public class AddonLib {
     {
         for(ContentHandlerBase handler : ContentHandlerProvider.INSTANCE.getHandlers()){
             handler.processIMC(event);
+        }
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event){
+        for(ContentHandlerBase handler : ContentHandlerProvider.INSTANCE.getHandlers()){
+            handler.clientSetup(event);
         }
     }
 }
