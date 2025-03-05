@@ -1,9 +1,5 @@
 package moffy.addonapi;
 
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
