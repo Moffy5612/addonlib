@@ -22,29 +22,29 @@ public class AddonAPI {
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        for(AddonHandler handler : AddonHandlerProvider.INSTANCE.getHandlers()){
-            handler.setup(event);
+        for(AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()){
+            module.setup(event);
         }
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
-        for(AddonHandler handler : AddonHandlerProvider.INSTANCE.getHandlers()){
-            handler.enqueueIMC(event);
+        for(AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()){
+            module.enqueueIMC(event);
         }
     }
 
     private void processIMC(final InterModProcessEvent event)
     {
-        for(AddonHandler handler : AddonHandlerProvider.INSTANCE.getHandlers()){
-            handler.processIMC(event);
+        for(AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()){
+            module.processIMC(event);
         }
     }
 
     @OnlyIn(Dist.CLIENT)    
     private void clientSetup(final FMLClientSetupEvent event){
-        for(AddonHandler handler : AddonHandlerProvider.INSTANCE.getHandlers()){
-            handler.clientSetup(event);
+        for(AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()){
+            module.clientSetup(event);
         }
     }
 }

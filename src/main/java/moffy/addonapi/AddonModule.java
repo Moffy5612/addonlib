@@ -1,20 +1,11 @@
 package moffy.addonapi;
 
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 
-public abstract class AddonHandler {
-
-    public boolean isModsLoaded(){
-        for(String modId: getRequiredModIDs()){
-            if(!ModList.get().isLoaded(modId))return false;
-        }
-        return true;
-    }
-
+public abstract class AddonModule {
     public void setup(FMLCommonSetupEvent event){
        
     }
@@ -33,10 +24,4 @@ public abstract class AddonHandler {
     {
         
     }
-
-    public void handle(){
-        AddonHandlerProvider.INSTANCE.register(this);
-    }
-
-    public abstract String[] getRequiredModIDs();
 }
