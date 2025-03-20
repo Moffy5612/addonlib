@@ -1,36 +1,40 @@
 package moffy.addonapi;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.ModList;
 
 public class RawAddonModule {
-    private String name;
+    private ResourceLocation name;
+    private String label;
     private Class<? extends AddonModule> handlerClass;
     private String[] requiredModIds;
-    private boolean required;
+    private boolean mandatory;
 
 
-    public RawAddonModule(String name, Class<? extends AddonModule> handlerClass, String[] requiredModIds){
-        this(name, handlerClass, requiredModIds, false);
+    public RawAddonModule(ResourceLocation name, String label, Class<? extends AddonModule> handlerClass, String[] requiredModIds){
+        this(name, label, handlerClass, requiredModIds, false);
     }
 
-    public RawAddonModule(String name, Class<? extends AddonModule> handlerClass, String[] requiredModIds, boolean required){
+    public RawAddonModule(ResourceLocation name, String label, Class<? extends AddonModule> handlerClass, String[] requiredModIds, boolean mandatory){
         this.name = name;
+        this.label = label;
         this.handlerClass = handlerClass;
         this.requiredModIds = requiredModIds;
+        this.mandatory = mandatory;
     }
 
-    public boolean isRequired(){
-        return this.required;
+    public boolean isMandatory(){
+        return this.mandatory;
     }
 
-    public String getName() {
+    public ResourceLocation getName() {
         return name;
     }
 
 
 
-    public void setName(String name) {
+    public void setName(ResourceLocation name) {
         this.name = name;
     }
 
@@ -70,5 +74,9 @@ public class RawAddonModule {
             if(!ModList.get().isLoaded(modId))return false;
         }
         return true;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

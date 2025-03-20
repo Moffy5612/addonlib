@@ -2,6 +2,7 @@ package moffy.addonapi;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,6 +23,11 @@ public class AddonAPI {
 
     private void setup(final FMLCommonSetupEvent event)
     {
+
+        for(AddonModuleProvider provider : AddonModuleRegistry.INSTANCE.getProviders()){
+            CraftingHelper.register(new ModsAvailableCondition.Serializer(provider.getModId()));
+        }
+
         for(AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()){
             module.setup(event);
         }
